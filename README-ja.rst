@@ -11,26 +11,20 @@
 
 `简体中文`_ (simplified Chinese)、`한국어`_ (Korean)、`日本語`_ (Japanese)でも読める。ただ、翻訳版はalex/what-happens-whenのメンテナーによるレビューは受けていない。
 
-Table of Contents
+目次
 ====================
 
 .. contents::
    :backlinks: none
    :local:
 
-The "g" key is pressed
+"g" キーが押されたとき
 ----------------------
-The following sections explain the physical keyboard actions
-and the OS interrupts. When you press the key "g" the browser receives the
-event and the auto-complete functions kick in.
-Depending on your browser's algorithm and if you are in
-private/incognito mode or not various suggestions will be presented
-to you in the dropbox below the URL bar. Most of these algorithms sort
-and prioritize results based on search history, bookmarks, cookies, and
-popular searches from the internet as a whole. As you are typing
-"google.com" many blocks of code run and the suggestions will be refined
-with each key press. It may even suggest "google.com" before you finish typing
-it.
+ここからのセクションは物理キーボードのアクションやOSによる割り込みについて説明していく。
+あなたが"g"キーを押した時とき、ブラウザはイベントを受け取ってオートコンプリート機能が作動する。
+ブラウザのアルゴリズムや、プライベートモードや匿名モードを使用しているかどうかにも依るが、様々な候補がURLバー配下のボックス表示される。
+ほとんどのアルゴリズムはサーチ履歴、ブックマーク、クッキー、またはインターネット全体で人気のあサーチワードに基づいて結果をソートしたり優先付けしたりする。
+あなたが"google.com"とタイプするのに合わせて多くのコードの塊が動き出し、それぞれのキー押下ごとに候補が洗練されていく。タイプし終える前に"google.com"を提案してくれる。
 
 The "enter" key bottoms out
 ---------------------------
