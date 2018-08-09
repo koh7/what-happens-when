@@ -18,7 +18,7 @@
    :backlinks: none
    :local:
 
-"g" キーが押されたとき
+"g" キーが押される
 ----------------------
 ここからのセクションは物理キーボードのアクションやOSによる割り込みについて説明していく。
 あなたが"g"キーを押した時とき、ブラウザはイベントを受け取ってオートコンプリート機能が作動する。
@@ -26,32 +26,22 @@
 ほとんどのアルゴリズムはサーチ履歴、ブックマーク、クッキー、またはインターネット全体で人気のあサーチワードに基づいて結果をソートしたり優先付けしたりする。
 あなたが"google.com"とタイプするのに合わせて多くのコードの塊が動き出し、それぞれのキー押下ごとに候補が洗練されていく。タイプし終える前に"google.com"を提案してくれる。
 
-The "enter" key bottoms out
+"エンターキー"が底を打つ
 ---------------------------
+エンターキーが稼働レンジの底を打ったところをゼロ地点としよう。
+この時点ではエンターキーへの電気回路は(直接的もしくは容量的に)閉じている。
+わずかな電流がキーボードの論理回路に流れてそれぞれのキースイッチの状態を解析し、スイッチの瞬間的な閉鎖による電気ノイズを抑えて、キーコードの数値に変換する。この場合だと13だ。
+次にキーボードコントローラーはキーコードをエンコードしてコンピューターに渡す。これには広く使われているUniversal Serial Bus (USB)やBluetooth接続が経由される。歴史的にはPS/2やADB接続だった。
 
-To pick a zero point, let's choose the Enter key on the keyboard hitting the
-bottom of its range. At this point, an electrical circuit specific to the enter
-key is closed (either directly or capacitively). This allows a small amount of
-current to flow into the logic circuitry of the keyboard, which scans the state
-of each key switch, debounces the electrical noise of the rapid intermittent
-closure of the switch, and converts it to a keycode integer, in this case 13.
-The keyboard controller then encodes the keycode for transport to the computer.
-This is now almost universally over a Universal Serial Bus (USB) or Bluetooth
-connection, but historically has been over PS/2 or ADB connections.
+*USBキーボードの場合:*
 
-*In the case of the USB keyboard:*
+- キーボードのUSB回路は、USBホストコントローラからピン1を経由して供給される5Vを動力源とする。
 
-- The USB circuitry of the keyboard is powered by the 5V supply provided over
-  pin 1 from the computer's USB host controller.
+- 生成されたキーコードは内部回路メモリによって"エンドポイント"と呼ばれるレジスタに保持される。
 
-- The keycode generated is stored by internal keyboard circuitry memory in a
-  register called "endpoint".
+- ホストUSBコントローラはその"エンドポイント"を毎~10ms(最小値はキーボードによって規定される)ごとにポーリングし、中にキーコードの値を格納する。
 
-- The host USB controller polls that "endpoint" every ~10ms (minimum value
-  declared by the keyboard), so it gets the keycode value stored on it.
-
-- This value goes to the USB SIE (Serial Interface Engine) to be converted in
-  one or more USB packets that follow the low level USB protocol.
+- この値はUSB SIE (Serial Interface Engine)に向かい、低レベルのUSBプロトコルへと続く1つ以上のUSBパケットに変換される。
 
 - Those packets are sent by a differential electrical signal over D+ and D-
   pins (the middle 2) at a maximum speed of 1.5 Mb/s, as an HID
