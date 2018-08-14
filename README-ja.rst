@@ -43,24 +43,13 @@
 
 - この値はUSB SIE (Serial Interface Engine)に向かい、低レベルのUSBプロトコルへと続く1つ以上のUSBパケットに変換される。
 
-- Those packets are sent by a differential electrical signal over D+ and D-
-  pins (the middle 2) at a maximum speed of 1.5 Mb/s, as an HID
-  (Human Interface Device) device is always declared to be a "low speed device"
-  (USB 2.0 compliance).
+- これらのパケットは固有の電気信号によってD+やD-ピン(the middle 2)を通して最大1.5 Mb/sで送信される。HID(Human Interface Device)デバイスは"低速デバイス"と呼ばれる所以だ(USB 2.0 compliance)。
 
-- This serial signal is then decoded at the computer's host USB controller, and
-  interpreted by the computer's Human Interface Device (HID) universal keyboard
-  device driver.  The value of the key is then passed into the operating
-  system's hardware abstraction layer.
+- この一連の信号はコンピュータのホストUSBコントローラでデコードされ、Human Interface Device (HID) universal keyboard device driverによって解釈される。キーの値はOSのハードウェア抽象レイヤーに渡される。
 
-*In the case of Virtual Keyboard (as in touch screen devices):*
+*バーチャルキーボード(タッチスクリーン機器)の場合*
 
-- When the user puts their finger on a modern capacitive touch screen, a
-  tiny amount of current gets transferred to the finger. This completes the
-  circuit through the electrostatic field of the conductive layer and
-  creates a voltage drop at that point on the screen. The
-  ``screen controller`` then raises an interrupt reporting the coordinate of
-  the key press.
+- ユーザーがモダンなタッチスクリーンに指を置いた時、微量の電流が指に流される。これにより導電層の静電場を通して回路が完成し、タッチされた点に電圧降下を作成する。この``スクリーンコントローラー``は次にキー押下の座標を記録するためインタラプト（割り込み）を生成する。
 
 - Then the mobile OS notifies the current focused application of a press event
   in one of its GUI elements (which now is the virtual keyboard application
