@@ -49,18 +49,13 @@
 
 *バーチャルキーボード(タッチスクリーン機器)の場合*
 
-- ユーザーがモダンなタッチスクリーンに指を置いた時、微量の電流が指に流される。これにより導電層の静電場を通して回路が完成し、タッチされた点に電圧降下を作成する。この``スクリーンコントローラー``は次にキー押下の座標を記録するためインタラプト（割り込み）を生成する。
+- ユーザーがモダンなタッチスクリーンに指を置いた時、微量の電流が指に流される。これにより導電層の静電場を通して回路が完成し、タッチされた点に電圧降下を作成する。この``スクリーンコントローラー``は次にキー押下の座標を記録するための割り込み要求を生成する。
 
-- Then the mobile OS notifies the current focused application of a press event
-  in one of its GUI elements (which now is the virtual keyboard application
-  buttons).
+- そしてモバイルOSはGUI要素(バーチャルキーボードアプリのボタン)の中のボタン押下イベントを現在アクティブなアプリケーションに通知する。
 
-- The virtual keyboard can now raise a software interrupt for sending a
-  'key pressed' message back to the OS.
+- この段階でバーチャルキーボードは'キー押下'メッセージをOSに送り返すために割り込み要求を生成する。
 
-- This interrupt notifies the current focused application of a 'key pressed'
-  event.
-
+- この割り込み要求はは現在アクティブなアプリケーションに'キー押下'イベントを通知する。
 
 Interrupt fires [NOT for USB keyboards]
 ---------------------------------------
