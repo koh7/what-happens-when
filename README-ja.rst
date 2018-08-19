@@ -57,17 +57,12 @@
 
 - この割り込み要求はは現在アクティブなアプリケーションに'キー押下'イベントを通知する。
 
-Interrupt fires [NOT for USB keyboards]
+割込み要求の発火[USBキーボード用ではない]
 ---------------------------------------
 
-The keyboard sends signals on its interrupt request line (IRQ), which is mapped
-to an ``interrupt vector`` (integer) by the interrupt controller. The CPU uses
-the ``Interrupt Descriptor Table`` (IDT) to map the interrupt vectors to
-functions (``interrupt handlers``) which are supplied by the kernel. When an
-interrupt arrives, the CPU indexes the IDT with the interrupt vector and runs
-the appropriate handler. Thus, the kernel is entered.
+キーボードはinterrupt request line (IRQ)に信号を発信、これは割り込み要求コントローラによって``interrupt vector`` (integer)にマッピングされる。CPUは``Interrupt Descriptor Table`` (IDT)を使ってカーネルに提供されている``interrupt handlers``を動作させるinterrupt vectorsを割り当てる。割り込み信号が到達したとき、CPUはIDTにinterrupt vectorとの索引付けをしてアプリケーションハンドラを実行する。すなわち、カーネルに入力される。
 
-(On Windows) A ``WM_KEYDOWN`` message is sent to the app
+(Windows上で)``WM_KEYDOWN``メッセージがアプリケーションに送られる
 --------------------------------------------------------
 
 The HID transport passes the key down event to the ``KBDHID.sys`` driver which
