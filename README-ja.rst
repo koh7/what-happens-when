@@ -65,13 +65,8 @@
 (Windows上で)``WM_KEYDOWN``メッセージがアプリケーションに送られる
 --------------------------------------------------------
 
-The HID transport passes the key down event to the ``KBDHID.sys`` driver which
-converts the HID usage into a scancode. In this case the scan code is
-``VK_RETURN`` (``0x0D``). The ``KBDHID.sys`` driver interfaces with the
-``KBDCLASS.sys`` (keyboard class driver). This driver is responsible for
-handling all keyboard and keypad input in a secure manner. It then calls into
-``Win32K.sys`` (after potentially passing the message through 3rd party
-keyboard filters that are installed). This all happens in kernel mode.
+HIDトランスポートはキーダウンイベントをHIDをスキャンコードに変換する``KBDHID.sys``ドライバに渡す。このケースではスキャンコードは``VK_RETURN`` (``0x0D``)だ。``KBDHID.sys``ドライバは``KBDCLASS.sys`` (keyboard class driver)と接続される。
+このドライバは全てのキーボードとキーパッドのインプットにセキュリティ観点で責任を持つ。そして、(インストールされた3rd partyのキーボードフィルターを通してメッセージを渡したあとに)``Win32K.sys``をコールする。これらはカーネルモードで発生する。
 
 ``Win32K.sys`` figures out what window is the active window through the
 ``GetForegroundWindow()`` API. This API provides the window handle of the
